@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        background-color: #0F172A;
+        color:  #1E293B;
+      }
+
+      .counter {
+        text-align: center;
+        background:  #F8FAFC ;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 10px 10px 70px rgba(38, 37, 37, 0.2);
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      #count {
+        display: block;
+        font-size: 60px;
+        font-weight: bold;
+        margin-bottom: 25px;
+      }
+
+      button {
+        padding: 12px 20px;
+        margin: 5px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #decrease {
+        background:  #EF4444;
+        color: white;
+        font-size: 20px;
+    }
+    
+    #reset {
+        background: #333;
+        color: white;
+      }
+
+      #increase {
+          background: #28a745;
+          color: white;
+          font-size: 20px;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="counter">
+      <h1>Counter</h1>
+
+      <span id="count">0</span>
+
+      <button id="decrease">−</button>
+      <button id="reset">Reset</button>
+      <button id="increase">+</button>
+    </div>
+
+    <script>
+      let count = Number(localStorage.getItem("count")) || 0;
+
+      const countDisplay = document.getElementById("count");
+      const decreaseBtn = document.getElementById("decrease");
+      const resetBtn = document.getElementById("reset");
+      const increaseBtn = document.getElementById("increase");
+
+      countDisplay.textContent = count;
+
+      function updateCounter() {
+        countDisplay.textContent = count;
+        localStorage.setItem("count", count);
+      }
+
+      increaseBtn.addEventListener("click", () => {
+        count++;
+        updateCounter();
+      });
+
+      decreaseBtn.addEventListener("click", () => {
+        count--;
+        updateCounter();
+      });
+
+      resetBtn.addEventListener("click", () => {
+        count = 0;
+        updateCounter();
+      });
+    </script>
+  </body>
+</html>
